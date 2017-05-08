@@ -52,11 +52,11 @@ binding_declaration
   ;
 
 constant_binding_declaration
-  : 'const' IDENTIFIER (':' parameter_type)? KEYWORD_ASSIGNMENT expression ';'
+  : KEYWORD_CONST_BINDING IDENTIFIER (':' parameter_type)? OPERATOR_ASSIGNMENT expression ';'
   ;
 
 variable_binding_declaration
-  : 'var' (':' parameter_type)? KEYWORD_ASSIGNMENT expression ';'
+  : KEYWORD_VARIABLE_BINDING IDENTIFIER (':' parameter_type)? OPERATOR_ASSIGNMENT expression ';'
   ;
 
 expression
@@ -87,21 +87,24 @@ primitive_type
 
 // Lexer rules
 
-KEYWORD_FUNCTION   : 'function';
-KEYWORD_RETURN     : 'return';
-KEYWORD_BOOLEAN    : 'bool';
-KEYWORD_CHARACTER  : 'char';
-KEYWORD_I8         : 'i8';
-KEYWORD_I16        : 'i16';
-KEYWORD_I32        : 'i32';
-KEYWORD_I64        : 'i64';
-KEYWORD_U8         : 'u8';
-KEYWORD_U16        : 'u16';
-KEYWORD_U32        : 'u32';
-KEYWORD_U64        : 'u64';
-KEYWORD_F32        : 'f32';
-KEYWORD_F64        : 'f64';
-KEYWORD_ASSIGNMENT : '=';
+KEYWORD_FUNCTION         : 'function';
+KEYWORD_RETURN           : 'return';
+KEYWORD_CONST_BINDING    : 'const';
+KEYWORD_VARIABLE_BINDING : 'var';
+KEYWORD_BOOLEAN          : 'bool';
+KEYWORD_CHARACTER        : 'char';
+KEYWORD_I8               : 'i8';
+KEYWORD_I16              : 'i16';
+KEYWORD_I32              : 'i32';
+KEYWORD_I64              : 'i64';
+KEYWORD_U8               : 'u8';
+KEYWORD_U16              : 'u16';
+KEYWORD_U32              : 'u32';
+KEYWORD_U64              : 'u64';
+KEYWORD_F32              : 'f32';
+KEYWORD_F64              : 'f64';
+
+OPERATOR_ASSIGNMENT : '=';
 
 BOOLEAN_LITERAL
   : 'true'
