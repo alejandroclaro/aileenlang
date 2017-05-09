@@ -1,0 +1,6 @@
+// Comment
+function foo(x:i32) ->f64
+{
+  return 3.1415;
+}
+

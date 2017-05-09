@@ -2,12 +2,12 @@ grammar Aileen;
 
 // Parser rules
 
-compilation_unit
-  : function_definition*
+module
+  : functionDefinition*
   ;
 
-function_definition
-  : KEYWORD_FUNCTION IDENTIFIER '(' parameters? ')' ('->' return_type)? block
+functionDefinition
+  : KEYWORD_FUNCTION IDENTIFIER '(' parameters? ')' ('->' returnType)? block
   ;
 
 parameters
@@ -15,48 +15,48 @@ parameters
   ;
 
 parameter
-  : IDENTIFIER ':' parameter_type
+  : IDENTIFIER ':' parameterType
   ;
 
-return_type
-  : primitive_type
+returnType
+  : primitiveType
   ;
 
-parameter_type
-  : primitive_type
+parameterType
+  : primitiveType
   ;
 
 block
-  : '{' binding_declaration_list statement_list '}'
+  : '{' bindingDeclarationList statementList '}'
   ;
 
-binding_declaration_list
-  : (binding_declaration)*
+bindingDeclarationList
+  : (bindingDeclaration)*
   ;
 
-statement_list
+statementList
   : (statement)*
   ;
 
 statement
-  : return_statement
+  : returnStatement
   ;
 
-return_statement
+returnStatement
   : KEYWORD_RETURN expression? ';'
   ;
 
-binding_declaration
-  : constant_binding_declaration
-  | variable_binding_declaration
+bindingDeclaration
+  : constantBindingDeclaration
+  | variableBindingDeclaration
   ;
 
-constant_binding_declaration
-  : KEYWORD_CONST_BINDING IDENTIFIER (':' parameter_type)? OPERATOR_ASSIGNMENT expression ';'
+constantBindingDeclaration
+  : KEYWORD_CONST_BINDING IDENTIFIER (':' parameterType)? OPERATOR_ASSIGNMENT expression ';'
   ;
 
-variable_binding_declaration
-  : KEYWORD_VARIABLE_BINDING IDENTIFIER (':' parameter_type)? OPERATOR_ASSIGNMENT expression ';'
+variableBindingDeclaration
+  : KEYWORD_VARIABLE_BINDING IDENTIFIER (':' parameterType)? OPERATOR_ASSIGNMENT expression ';'
   ;
 
 expression
@@ -70,7 +70,7 @@ literal
   | FLOAT_LITERAL
   ;
 
-primitive_type
+primitiveType
   : KEYWORD_BOOLEAN
   | KEYWORD_CHARACTER
   | KEYWORD_I8

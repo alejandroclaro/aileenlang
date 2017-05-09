@@ -14,11 +14,11 @@ ANTLR4CPP_PROCESS_GRAMMAR (aileenc Grammar ${PROJECT_SOURCE_DIR}/grammar/Aileen.
 INCLUDE_DIRECTORIES (${ANTLR4CPP_INCLUDE_DIRS})
 INCLUDE_DIRECTORIES (${ANTLR4CPP_INCLUDE_DIRS_GRAMMAR})
 
-# Include Library directories.
+# Include library directories.
 LINK_DIRECTORIES (${ANTLR4CPP_LIBS})
 
-# Setup cmpilation.
-SET (SOURCE_FILES src/Main.cpp)
+# Setup compilation.
+SET (SOURCE_FILES src/Main.cpp src/ParseContext.cpp src/ParseContext.h src/SymbolVisitor.cpp src/SymbolVisitor.h src/EvaluationVisitor.cpp src/EvaluationVisitor.h)
 ADD_EXECUTABLE (aileenc ${SOURCE_FILES} ${ANTLR4CPP_SRC_FILES_GRAMMAR})
 
 TARGET_LINK_LIBRARIES (aileenc

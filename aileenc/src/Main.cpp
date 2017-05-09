@@ -15,11 +15,15 @@
 #include <AileenParser.h>
 #include <AileenListener.h>
 
+#include "SymbolVisitor.h"
+#include "EvaluationVisitor.h"
+
 #include <antlr4-runtime.h>
 #include <fstream>
 
 /* USINGS *************************************************************************************************************/
 
+using namespace Aileen;
 using namespace antlr4;
 using namespace antlr4::tree;
 using namespace Grammar;
@@ -43,12 +47,18 @@ main(int argc, char** argv)
     return EXIT_FAILURE;
   }
 
-  std::ifstream     file(argv[1]);
-  ANTLRInputStream  input(file);
-  AileenLexer       lexer(&input);
-  CommonTokenStream tokens(&lexer);
-  AileenParser      parser(&tokens);
-  ParseTree*        tree = parser.compilation_unit();
+  std::ifstream     file{argv[1]};
+  ANTLRInputStream  input{file};
+  AileenLexer       lexer{&input};
+  CommonTokenStream tokens{&lexer};
+  AileenParser      parser{&tokens};
+  ParseTree*        tree{parser.module()};
+  SymbolVisitor     symbolVisitor;
+  EvaluationVisitor evaluationVisitor;
+  ParseContext      context;
+
+  context = symbolVisitor.visit(*tree);
+  evaluationVisitor.visit(*tree, context);
 
   std::cout << tree->toStringTree(&parser) << std::endl;
 
